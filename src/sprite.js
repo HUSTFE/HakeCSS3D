@@ -6,7 +6,7 @@ import Other from 'other';
 
 export default class Sprite extends TObject {
   initialize(params) {
-    this.__super__.initialize.apply(this, [params]);
+    super.initialize.apply(this, [params]);
 
     this.__name = '';
     this.__id = '';

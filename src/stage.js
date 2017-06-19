@@ -8,7 +8,7 @@ import Other from 'other';
 export default class Stage extends Sprite {
 
   initialize(params) {
-    Stage.__super__.initialize.apply(this, [params]);
+    super.initialize.apply(this, [params]);
 
     if (!(params && params.el)) {
       this.el.style.top = '0px';

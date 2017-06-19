@@ -1,7 +1,7 @@
 /**
  * Created by Doming on 2017/6/9.
  */
-import ObjectFunction from './objectFunction';
+import Other from 'other';
 
 export default class TObject {
   constructor(...opt) {
@@ -117,34 +117,6 @@ export default class TObject {
     return this;
   }
 
-  extend(protoProps, staticProps) {
-    let parent = this;
-    let child;
-
-    if (protoProps && Object.prototype.hasOwnProperty.call(protoProps, 'constructor')) {
-      child = protoProps.constructor;
-    } else {
-      child = function () {
-        return parent.apply(this, arguments);
-      };
-    }
-
-    ObjectFunction.extend(child, parent, staticProps);
-
-    let Surrogate = () => {
-      this.constructor = child;
-    };
-
-    Surrogate.prototype = parent.prototype;
-    child.prototype = new Surrogate();
-
-    if (protoProps) ObjectFunction.extend(child.prototype, protoProps);
-
-    child.__super__ = parent.prototype;
-
-    return child;
-  };
-
   initialize() {
     this.x = 0;
     this.y = 0;
@@ -166,6 +138,6 @@ export default class TObject {
     this.__orgT = {x: '-50%', y: '-50%', z: '0px'};
     this.__orgF = {x: 0, y: 0, z: 0};
     this.children = [];
-    this.prefix = ObjectFunction.prefixCheck();
+    this.prefix = Other.prefixCheck();
   }
 }
