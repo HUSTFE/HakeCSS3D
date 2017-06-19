@@ -1,5 +1,5 @@
 /**
- * Created by hust on 2017/6/19.
+ * Created by Doming on 2017/6/19.
  */
 import TObject from 'TObject'
 import ObjectFunction from 'objectFunction'
