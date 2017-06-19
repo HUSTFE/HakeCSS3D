@@ -3,7 +3,7 @@ var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var path = require('path');
 var env = require('yargs').argv.mode;
 
-var libraryName = 'Hake';
+var libraryName = 'HakeCSS3D';
 
 var plugins = [], outputFile;
 
