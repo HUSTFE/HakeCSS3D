@@ -170,7 +170,7 @@ export default class Sprite extends TObject {
   }
 
   addChild(view) {
-    this.__super__.addChild.apply(this, [view]);
+    super.addChild.apply(this, [view]);
     if (this.el && view.el) {
       this.el.appendChild(view.el);
     }

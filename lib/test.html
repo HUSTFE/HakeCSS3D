@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test 3d</title>
+    <script src="HakeCSS3D.min.js"></script>
+    <style>
+        #main div{
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="main"></div>
+
+<script>
+  window.onload = function () {
+    var C3 = new HakeCSS3D();
+    var s = new C3.Stage();
+    s.size(window.innerWidth, window.innerHeight).material({
+      color : "#cccccc"
+    }).update();
+    document.getElementById('main').appendChild(s.el);
+    var sp = new C3.Sprite();
+    sp.position(0, 0, -500).update();
+    s.addChild(sp);
+    var p = new C3.Plane();
+    p.size(100).position(0, 100, -s.fov).rotation(0, 0, 0).material({
+      color : C3.color.getRandomColor()
+    }).update();
+    s.addChild(p);
+    var c = new C3.Box();
+    c.size(100).position(0, -100, -s.fov).rotation(0, 0, 0).material({
+      color : C3.color.getRandomColor()
+    }).update();
+    s.addChild(c);
+
+    setInterval(function () {
+      c.rotate(1,1,0);
+      c.update();
+    },10);
+  }
+</script>
+</body>
+</html>

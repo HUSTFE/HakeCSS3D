@@ -44,9 +44,22 @@ export default class TObject {
   }
 
   size(width, height, depth) {
-    this.width = !width ? this.width : width;
-    this.height = !height ? this.height : height;
-    this.depth = !depth ? this.depth : depth;
+    switch (arguments.length) {
+      case 1 :
+        this.width = width;
+        this.height = width;
+        this.depth = width;
+        break;
+      case 2 :
+        this.width = width;
+        this.height = height;
+        break;
+      case 3 :
+        this.width = width;
+        this.height = height;
+        this.depth = depth;
+        break;
+    }
     return this;
   }
 
@@ -77,7 +90,7 @@ export default class TObject {
   }
 
   addChild(view) {
-    if (view.parent !== null) view.parent.removeChild(view);
+    if (view.parent) view.parent.removeChild(view);
     if (view.__name !== '') {
       if (this[view.__name] !== undefined) console.log(view.__name + ' already exist!');
       this[view.__name] = view;

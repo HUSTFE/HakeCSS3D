@@ -3,7 +3,7 @@
  */
 import TObject from 'TObject';
 
-export class Camera extends TObject {
+export default class Camera extends TObject {
   initialize(params) {
     super.initialize.apply(this, [params]);
     this.fov = 75;
