@@ -48,6 +48,7 @@ export default class ObjectFunctions {
         return _prefix[i];
       }
     }
-    return false;
+
+    throw 'Your browser might not support CSS3 properly.'
   }
 }
