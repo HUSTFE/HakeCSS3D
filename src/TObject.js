@@ -1,7 +1,7 @@
 /**
  * Created by Doming on 2017/6/9.
  */
-import ObjectFunction from './objectFunction'
+import ObjectFunction from './objectFunction';
 
 export default class TObject {
   constructor(...opt) {
@@ -71,7 +71,7 @@ export default class TObject {
   }
 
   sort(s0, s1, s2) {
-    if (arguments.length > 3) throw 'sort arguments is wrong!';
+    if (arguments.length > 3) console.error('sort arguments is wrong!');
     this.__sort = [s0, s1, s2];
     return this;
   }
@@ -79,7 +79,7 @@ export default class TObject {
   addChild(view) {
     if (view.parent !== null) view.parent.removeChild(view);
     if (view.__name !== '') {
-      if (this[view.__name] !== undefined) throw view.__name + ' already exist!';
+      if (this[view.__name] !== undefined) console.log(view.__name + ' already exist!');
       this[view.__name] = view;
     }
     this.children.push(view);
@@ -102,6 +102,7 @@ export default class TObject {
   removeAllChild() {
     for (let i = this.children.length - 1; i >= 0; i--) {
       let view = this.children[i];
+
       if (view.__name !== '') delete this[view.__name];
       view.parent = null;
     }
@@ -130,13 +131,14 @@ export default class TObject {
 
     ObjectFunction.extend(child, parent, staticProps);
 
-    let Surrogate = function () {
+    let Surrogate = () => {
       this.constructor = child;
     };
-    Surrogate.prototype = parent.prototype;
-    child.prototype = new Surrogate;
 
-    if (protoProps) extend(child.prototype, protoProps);
+    Surrogate.prototype = parent.prototype;
+    child.prototype = new Surrogate();
+
+    if (protoProps) ObjectFunction.extend(child.prototype, protoProps);
 
     child.__super__ = parent.prototype;
 

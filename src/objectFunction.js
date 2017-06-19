@@ -23,12 +23,12 @@ export default class ObjectFunctions {
    * @return obj Object
    * @description Extend object with all arguments object, the object key will be rewrite by object after*/
 
-  static extend(obj,...exObj) {
+  static extend(obj, ...exObj) {
     let length = exObj.length;
 
-    if (length < 2 || obj == null) return obj;
+    if (length < 1 || obj == null) return obj;
     for (let i = 1; i < length; i++) {
-      let [source, ks, sl] = [exObj[i], PrivateFunctions.keys(source), ks.length];
+      let [source, ks, sl] = [exObj[i], this.keys(source), ks.length];
 
       for (let i = 0; i < sl; i++) {
         let key = ks[i];
@@ -49,6 +49,6 @@ export default class ObjectFunctions {
       }
     }
 
-    throw 'Your browser might not support CSS3 properly.'
+    console.error('Your browser might not support CSS3 properly.');
   }
 }

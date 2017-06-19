@@ -10,7 +10,7 @@ export default class other {
     return Math.round(n * 100) / 100;
   }
 
-  static firstUpper(str){
+  static firstUpper(str) {
     return str[0].toUpperCase() + str.slice(1, str.length);
   }
 }

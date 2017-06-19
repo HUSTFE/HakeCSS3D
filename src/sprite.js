@@ -1,11 +1,10 @@
 /**
  * Created by Doming on 2017/6/19.
  */
-import TObject from 'TObject'
-import ObjectFunction from 'objectFunction'
-import Other from 'other'
+import TObject from 'TObject';
+import Other from 'other';
 
-export default class Sprite extends TObject{
+export default class Sprite extends TObject {
   initialize(params) {
     this.__super__.initialize.apply(this, [params]);
 
@@ -63,7 +62,7 @@ export default class Sprite extends TObject{
     return this;
   }
 
-  update(){
+  update() {
     this.updateS();
     this.updateM();
     this.updateO();
@@ -73,7 +72,7 @@ export default class Sprite extends TObject{
   }
 
   updateS() {
-    //this.el.style[this.prefix + 'TransformOrigin'] = '50% 50%';
+    //  this.el.style[this.prefix + 'TransformOrigin'] = '50% 50%';
     return this;
   }
 
@@ -90,7 +89,8 @@ export default class Sprite extends TObject{
           this.el.style[this.prefix + 'BackfaceVisibility'] = this.__mat[i] ? 'visible' : 'hidden';
           break;
         case 'image':
-          this.el.style['background' + Other.firstUpper(i)] = this.__mat[i] !== '' ? ('url(' + this.__mat[i] + ')') : '';
+          this.el.style['background' + Other.firstUpper(i)] = this.__mat[i] !== '' ?
+            ('url(' + this.__mat[i] + ')') : '';
           break;
         default:
           this.el.style['background' + Other.firstUpper(i)] = this.__mat[i];
@@ -106,8 +106,9 @@ export default class Sprite extends TObject{
    * */
 
   updateO() {
-    if (typeof(this.originX) === 'number') {
+    if (typeof (this.originX) === 'number') {
       let _x = Other.fixed0(this.originX - this.__orgF.x);
+
       this.__orgO.x = _x + 'px';
       this.__orgT.x = -_x + 'px';
     } else {
@@ -115,8 +116,9 @@ export default class Sprite extends TObject{
       this.__orgT.x = '-' + this.originX;
     }
 
-    if (typeof(this.originY) === 'number') {
+    if (typeof (this.originY) === 'number') {
       let _y = Other.fixed0(this.originY - this.__orgF.y);
+
       this.__orgO.y = _y + 'px';
       this.__orgT.y = -_y + 'px';
     } else {
@@ -124,8 +126,9 @@ export default class Sprite extends TObject{
       this.__orgT.y = '-' + this.originY;
     }
 
-    if (typeof(this.originZ) === 'number') {
+    if (typeof (this.originZ) === 'number') {
       let _z = Other.fixed0(this.originZ - this.__orgF.z);
+
       this.__orgO.z = _z + 'px';
       this.__orgT.z = -_z + 'px';
     } else {
@@ -138,14 +141,21 @@ export default class Sprite extends TObject{
   }
 
   /**
-   * @description To update translate3d by sort order
+   * @description To update Transform by sort order
    * */
 
   updateT() {
-    let _S0 = this.__sort[0];
-    let _S1 = this.__sort[1];
-    let _S2 = this.__sort[2];
-    this.el.style[this.prefix + 'Transform'] = 'translate3d(' + this.__orgT.x + ', ' + this.__orgT.y + ', ' + this.__orgT.z + ') ' + 'translate3d(' + fixed2(this.x) + 'px,' + fixed2(this.y) + 'px,' + fixed2(this.z) + 'px) ' + 'rotate' + _S0 + '(' + fixed2(this['rotation' + _S0]) % 360 + 'deg) ' + 'rotate' + _S1 + '(' + fixed2(this['rotation' + _S1]) % 360 + 'deg) ' + 'rotate' + _S2 + '(' + fixed2(this['rotation' + _S2]) % 360 + 'deg) ' + 'scale3d(' + fixed2(this.scaleX) + ', ' + fixed2(this.scaleY) + ', ' + fixed2(this.scaleZ) + ') ';
+    let [_S0, _S1, _S2] = this.__sort;
+
+    this.el.style[this.prefix + 'Transform'] =
+      'translate3d(' + this.__orgT.x + ', ' + this.__orgT.y + ', ' + this.__orgT.z + ') ' +
+      'translate3d(' + Other.fixed2(this.x) + 'px,' + Other.fixed2(this.y) + 'px,' + Other.fixed2(this.z) + 'px) ' +
+      'rotate' + _S0 + '(' + Other.fixed2(this['rotation' + _S0]) % 360 + 'deg) ' +
+      'rotate' + _S1 + '(' + Other.fixed2(this['rotation' + _S1]) % 360 + 'deg) ' +
+      'rotate' + _S2 + '(' + Other.fixed2(this['rotation' + _S2]) % 360 + 'deg) ' +
+      'scale3d(' + Other.fixed2(this.scaleX) + ', ' +
+      Other.fixed2(this.scaleY) + ', ' + Other.fixed2(this.scaleZ) + ') ';
+
     return this;
   }
 
@@ -161,8 +171,9 @@ export default class Sprite extends TObject{
 
   addChild(view) {
     this.__super__.addChild.apply(this, [view]);
-    if (this.el && view.el)
+    if (this.el && view.el) {
       this.el.appendChild(view.el);
+    }
     return this;
   }
 
@@ -182,6 +193,7 @@ export default class Sprite extends TObject{
   removeAllChild() {
     for (let i = this.children.length - 1; i >= 0; i--) {
       let view = this.children[i];
+
       if (view.__name !== '') delete this[view.__name];
       view.parent = null;
       this.el.removeChild(view.el);
@@ -234,11 +246,13 @@ export default class Sprite extends TObject{
   }
 
   visibility(obj) {
-    if (obj.visible !== undefined)
+    if (obj.visible !== undefined) {
       this.visible = obj.visible;
+    }
 
-    if (obj.alpha !== undefined)
+    if (obj.alpha !== undefined) {
       this.alpha = obj.alpha;
+    }
 
     return this;
   }
