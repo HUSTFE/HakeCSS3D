@@ -6,6 +6,7 @@ import Skybox from 'skybox';
 import Sprite from 'sprite';
 import Stage from 'stage';
 import TObject from 'TObject';
+import Orienter from 'orienter'
 
 export default class CSS3Renderer {
   constructor() {
@@ -18,5 +19,6 @@ export default class CSS3Renderer {
     this.Plane = Plane;
     this.Skybox = Skybox;
     this.Stage = Stage;
+    this.Orienter = Orienter;
   }
 }
