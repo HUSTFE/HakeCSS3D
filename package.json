@@ -1,5 +1,5 @@
 {
-  "name": "css3d-engine-learn",
+  "name": "HakeCSS3D",
   "version": "0.1.3",
   "description": "Produce universal library with webpack and es6",
   "main": "lib/library.js",
