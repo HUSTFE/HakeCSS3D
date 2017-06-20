@@ -8,10 +8,18 @@
         #main div{
             border: 1px solid white;
         }
+        #test{
+            color: greenyellow;
+            position: absolute;
+            top: 0;
+            left: 0;
+            float: left;
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
-
+<div id="test"></div>
 <div id="main"></div>
 
 <script>
@@ -50,8 +58,9 @@
 
 
       console.log(a);
+      document.getElementById('test').innerText = a;
 
-      sp.rotation(0,a,0).updateT()
+      sp.rotation(0,-a,0).updateT()
     };
 
     o.init();
