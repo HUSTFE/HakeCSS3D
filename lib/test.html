@@ -15,32 +15,52 @@
 <div id="main"></div>
 
 <script>
-  window.onload = function () {
-    var C3 = new HakeCSS3D();
-    var s = new C3.Stage();
+  window.onload = (function () {
+    window.C3 = new HakeCSS3D();
+    window.s = new C3.Stage();
     s.size(window.innerWidth, window.innerHeight).material({
       color : "#cccccc"
     }).update();
     document.getElementById('main').appendChild(s.el);
-    var sp = new C3.Sprite();
+    window.sp = new C3.Sprite();
     sp.position(0, 0, -500).update();
     s.addChild(sp);
-    var p = new C3.Plane();
+    window.p = new C3.Plane();
     p.size(100).position(0, 100, -s.fov).rotation(0, 0, 0).material({
       color : C3.color.getRandomColor()
     }).update();
-    s.addChild(p);
-    var c = new C3.Box();
+    sp.addChild(p);
+    window.c = new C3.Box();
     c.size(100).position(0, -100, -s.fov).rotation(0, 0, 0).material({
       color : C3.color.getRandomColor()
     }).update();
-    s.addChild(c);
+    sp.addChild(c);
 
     setInterval(function () {
       c.rotate(1,1,0);
       c.update();
     },10);
-  }
+
+    /*document.onmousemove = function (e) {
+       var rotate = e.screenX/window.innerWidth - 0.5 ;
+       sp.rotation(0,rotate*120,0).updateT()
+    };*/
+
+      window.addEventListener('deviceorientation',function (e) {
+          console.log(e)
+
+          var a = e.alpha,b,g;
+          if(a>60)
+              a = 60;
+          if(a<-60)
+              a = -60;
+
+          console.log(a)
+
+          sp.rotation(0,a,0).updateT()
+
+      }, false);
+  }).bind(window)
 </script>
 </body>
 </html>
