@@ -44,13 +44,10 @@
     var o = new C3.Orienter();
 
     o.onOrient = function (e) {
-      console.log(e)
+      console.log(330-e.lon)
 
-      var a = e.a;
-      if(a>60)
-        a = 60;
-      if(a<-60)
-        a = -60;
+      var a = 30 - e.lon;
+
 
       console.log(a);
 
