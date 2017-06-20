@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>test 3d</title>
     <script src="HakeCSS3D.min.js"></script>
     <style>
@@ -54,7 +55,10 @@
     o.onOrient = function (e) {
       console.log(330-e.lon)
 
-      var a = e.lon;
+      if(!window.Ooffset)
+        window.Ooffset = e.lon;
+
+      var a = e.lon - window.Ooffset;
 
 
       console.log(a);
