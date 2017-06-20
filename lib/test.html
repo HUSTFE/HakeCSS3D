@@ -58,13 +58,23 @@
       if(!window.Ooffset)
         window.Ooffset = e.lon;
 
-      var a = e.lon - window.Ooffset;
+      var a = e.lon - window.Ooffset,b = e.lat;
 
+      if(a>60)
+        a = 60;
+      if(a<-60)
+        a = -60;
 
-      console.log(a);
+      if(b>40)
+        b = 40;
+      if(b<-40)
+        b = -40;
+
+      console.log(e.lat);
       document.getElementById('test').innerText = a;
 
-      sp.rotation(0,-a,0).updateT()
+
+      sp.rotation(b, -a, 0).updateT()
     };
 
     o.init();
