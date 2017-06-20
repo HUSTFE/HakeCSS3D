@@ -41,6 +41,24 @@
       c.update();
     },10);
 
+    var o = new C3.Orienter();
+
+    o.onOrient = function (e) {
+      console.log(e)
+
+      var a = e.a;
+      if(a>60)
+        a = 60;
+      if(a<-60)
+        a = -60;
+
+      console.log(a);
+
+      sp.rotation(0,a,0).updateT()
+    };
+
+    o.init();
+
     /*document.onmousemove = function (e) {
        var rotate = e.screenX/window.innerWidth - 0.5 ;
        sp.rotation(0,rotate*120,0).updateT()

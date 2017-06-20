@@ -6,7 +6,7 @@ import Skybox from 'skybox';
 import Sprite from 'sprite';
 import Stage from 'stage';
 import TObject from 'TObject';
-import Orienter from 'orienter'
+import Orienter from 'orienter';
 
 export default class CSS3Renderer {
   constructor() {
