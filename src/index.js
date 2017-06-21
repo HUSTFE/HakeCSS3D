@@ -10,7 +10,7 @@ import Orienter from 'orienter';
 
 export default class HakeCSS3D {
   constructor() {
-    this.__version = '0.0.2';
+    this.__version = '0.1.0';
     this.color = Color;
     this.Object = TObject;
     this.Sprite = Sprite;

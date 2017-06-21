@@ -1,6 +1,6 @@
 {
-  "name": "HakeCSS3D",
-  "version": "0.0.2",
+  "name": "hake-css3d",
+  "version": "0.1.0",
   "description": "A 3d renderer using css3 to make web page view",
   "main": "src/index.js",
   "scripts": {
