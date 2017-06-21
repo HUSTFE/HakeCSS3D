@@ -10,7 +10,5 @@ Now it can render simple items like plane and box, more item will join in the fu
 You can clone this repository to use webpack build, or using the lib folder js.min to use;
 
 ## TODO List
-1. replace initialize with class constructor;
-2. Add more item to use and create.
-3. Add opacity;
-4. ......
+1. Add more item to use and create.
+2. ......
