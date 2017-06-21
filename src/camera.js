@@ -4,8 +4,8 @@
 import TObject from 'TObject';
 
 export default class Camera extends TObject {
-  initialize(params) {
-    super.initialize.apply(this, [params]);
+  constructor(params) {
+    super(params);
     this.fov = 75;
   }
 

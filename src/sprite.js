@@ -5,8 +5,8 @@ import TObject from 'TObject';
 import Other from 'other';
 
 export default class Sprite extends TObject {
-  initialize(params) {
-    super.initialize.apply(this, [params]);
+  constructor(params) {
+    super(params);
 
     this.__name = '';
     this.__id = '';
@@ -40,7 +40,6 @@ export default class Sprite extends TObject {
     _dom.style[this.prefix + 'TransformStyle'] = 'preserve-3d';
     this.el = _dom;
     _dom.le = this;
-
   }
 
   name(str) {

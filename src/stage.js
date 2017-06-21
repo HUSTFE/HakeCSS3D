@@ -6,9 +6,8 @@ import Camera from 'camera';
 import Other from 'other';
 
 export default class Stage extends Sprite {
-
-  initialize(params) {
-    super.initialize.apply(this, [params]);
+  constructor(params) {
+    super(params);
 
     if (!(params && params.el)) {
       this.el.style.top = '0px';

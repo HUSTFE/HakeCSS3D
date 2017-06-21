@@ -5,8 +5,8 @@ import Sprite from 'sprite';
 import Other from 'other';
 
 export default class Plane extends Sprite {
-  initialize(params) {
-    super.initialize.apply(this, [params]);
+  constructor(params) {
+    super(params);
   }
 
   update() {

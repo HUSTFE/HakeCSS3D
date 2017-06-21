@@ -6,8 +6,8 @@ import Plane from 'plane';
 import Other from 'other';
 
 export default class Box extends Sprite {
-  initialize(params) {
-    super.initialize.apply(this, [params]);
+  constructor(params) {
+    super(params);
 
     this.front = new Plane();
     this.front.name = 'front';

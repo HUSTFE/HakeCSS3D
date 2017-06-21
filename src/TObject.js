@@ -4,8 +4,28 @@
 import Other from 'other';
 
 export default class TObject {
-  constructor(...opt) {
-    this.initialize.apply(this, opt);
+  constructor(params) {
+    this.x = 0;
+    this.y = 0;
+    this.z = 0;
+    this.rotationX = 0;
+    this.rotationY = 0;
+    this.rotationZ = 0;
+    this.scaleX = 1;
+    this.scaleY = 1;
+    this.scaleZ = 1;
+    this.width = 0;
+    this.height = 0;
+    this.depth = 0;
+    this.__sort = ['X', 'Y', 'Z'];
+    this.originX = '50%';
+    this.originY = '50%';
+    this.originZ = '0px';
+    this.__orgO = {x: '50%', y: '50%', z: '0px'};
+    this.__orgT = {x: '-50%', y: '-50%', z: '0px'};
+    this.__orgF = {x: 0, y: 0, z: 0};
+    this.children = [];
+    this.prefix = Other.prefixCheck();
   }
 
   position(x, y, z) {
@@ -130,27 +150,4 @@ export default class TObject {
     return this;
   }
 
-  initialize() {
-    this.x = 0;
-    this.y = 0;
-    this.z = 0;
-    this.rotationX = 0;
-    this.rotationY = 0;
-    this.rotationZ = 0;
-    this.scaleX = 1;
-    this.scaleY = 1;
-    this.scaleZ = 1;
-    this.width = 0;
-    this.height = 0;
-    this.depth = 0;
-    this.__sort = ['X', 'Y', 'Z'];
-    this.originX = '50%';
-    this.originY = '50%';
-    this.originZ = '0px';
-    this.__orgO = {x: '50%', y: '50%', z: '0px'};
-    this.__orgT = {x: '-50%', y: '-50%', z: '0px'};
-    this.__orgF = {x: 0, y: 0, z: 0};
-    this.children = [];
-    this.prefix = Other.prefixCheck();
-  }
 }
