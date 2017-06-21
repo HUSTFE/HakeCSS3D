@@ -8,6 +8,7 @@ import Stage from 'stage';
 import TObject from 'TObject';
 import Orienter from 'orienter';
 import Triangle from 'triangle';
+import Tetrahedron from 'Tetrahedron';
 
 export default class HakeCSS3D {
   constructor() {
@@ -22,5 +23,6 @@ export default class HakeCSS3D {
     this.Stage = Stage;
     this.Orienter = Orienter;
     this.Triangle = Triangle;
+    this.Tetrahedron = Tetrahedron;
   }
 }
