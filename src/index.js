@@ -8,9 +8,9 @@ import Stage from 'stage';
 import TObject from 'TObject';
 import Orienter from 'orienter';
 
-export default class CSS3Renderer {
+export default class HakeCSS3D {
   constructor() {
-    this.__version = '0.0.1';
+    this.__version = '0.0.2';
     this.color = Color;
     this.Object = TObject;
     this.Sprite = Sprite;

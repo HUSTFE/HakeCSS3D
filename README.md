@@ -9,6 +9,34 @@ Now it can render simple items like plane and box, more item will join in the fu
 ## How to use
 You can clone this repository to use webpack build, or using the lib folder js.min to use;
 
+After you install and import this library.
+
+### Common Function
+- x.position(x,(y,z))
+- x.move(x,(y,z))
+- x.rotation(x,(y,z))
+- x.rotate(x,(y,z))
+- x.scale(x,(y,z))
+
+### Stage
+```javascript
+// You should get a instance of root component first;
+var h3 = new HakeCSS3D();
+// Then use instance to create a stage;
+var stage = new h3.Stage();
+// Define basic information for your stage;
+stage.size(window.innerWidth, window.innerHeight)
+      .material({
+            color : "#cccccc"
+          })
+      .update();
+//Then mount it on a exist el;
+document.getElementById('main').appendChild(stage.el);
+```
+Stage represent a single view of 3d scene, it's a container for other Elements.
+For stage, we not recommend to transform so only set its material and size is fine.
+
+
 ## TODO List
 1. Add more item to use and create.
 2. ......
