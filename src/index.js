@@ -7,6 +7,7 @@ import Sprite from 'sprite';
 import Stage from 'stage';
 import TObject from 'TObject';
 import Orienter from 'orienter';
+import Triangle from 'triangle';
 
 export default class HakeCSS3D {
   constructor() {
@@ -20,5 +21,6 @@ export default class HakeCSS3D {
     this.Skybox = Skybox;
     this.Stage = Stage;
     this.Orienter = Orienter;
+    this.Triangle = Triangle;
   }
 }
