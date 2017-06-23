@@ -105,6 +105,18 @@ export default class Box extends Sprite {
     return this;
   }
 
+  updateV() {
+    this.front.el.style.opacity = this.alpha;
+    this.back.el.style.opacity = this.alpha;
+    this.left.el.style.opacity = this.alpha;
+    this.right.el.style.opacity = this.alpha;
+    this.up.el.style.opacity = this.alpha;
+    this.down.el.style.opacity = this.alpha;
+
+    this.el.style.display = this.visible ? 'block' : 'none';
+    return this;
+  }
+
   filter(obj) {
     this.__flt = obj;
     return this;
