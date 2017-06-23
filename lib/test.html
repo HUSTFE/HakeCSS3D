@@ -14,6 +14,10 @@
             float: left;
             z-index: 999;
         }
+
+        #main div{
+            border: dashed 1px white;
+        }
     </style>
 </head>
 <body>
@@ -35,17 +39,22 @@
     p.size(50,70).position(0, 30, -s.fov).rotation(0, 0, 0).material({
       color : C3.color.getRandomColor()
     }).update();
-    sp.addChild(p);
+    //sp.addChild(p);
     window.c = new C3.Box();
-    c.size(100).position(0, -100, -s.fov).rotation(0, 0, 0).material({
+    c.size(200).position(0, 0, -s.fov).rotation(0, 0, 0).material({
       color : C3.color.getRandomColor()
-    }).update();
+    }).visibility({alpha : 0.4}).update();
     sp.addChild(c);
-
+    var c1 = (new C3.Box()).size(100).position(0, 0, -s.fov).rotation(0, 0, 0).material({
+      color : C3.color.getRandomColor()
+    }).visibility({alpha : 0.4}).update();
+    sp.addChild(c1);
     setInterval(function () {
-      c.rotate(1,1,0);
+      c.rotate(0.5,0.5,0);
+      c1.rotate(0.5,0.5,0);
       c.update();
-    },10);
+      c1.update();
+      },10);
 
     var o = new C3.Orienter();
 
