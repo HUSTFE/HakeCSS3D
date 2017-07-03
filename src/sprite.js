@@ -8,13 +8,6 @@ export default class Sprite extends TObject {
   constructor(params) {
     super(params);
 
-    this.__name = '';
-    this.__id = '';
-    this.__class = '';
-
-    this.alpha = 1;
-    this.visible = true;
-
     let _dom;
 
     if (params && params.el) {
@@ -41,6 +34,13 @@ export default class Sprite extends TObject {
     this.el = _dom;
     _dom.le = this;
   }
+
+  __name = '';
+  __id = '';
+  __class = '';
+
+  alpha = 1;
+  visible = true;
 
   name(str) {
     this.__name = str;

@@ -1,5 +1,5 @@
 /**
- * Created by hust on 2017/6/20.
+ * Created by Doming on 2017/6/20.
  */
 export default class Orienter {
   constructor(config) {
