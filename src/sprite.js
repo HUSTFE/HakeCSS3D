@@ -158,7 +158,13 @@ export default class Sprite extends TObject {
       'rotate' + _S2 + '(' + Other.fixed2(this['rotation' + _S2]) % 360 + 'deg) ' +
       'scale3d(' + Other.fixed2(this.scaleX) + ', ' +
       Other.fixed2(this.scaleY) + ', ' + Other.fixed2(this.scaleZ) + ') ';
-    this.el.style['transform'] = this.el.style[this.prefix + 'Transform'];
+    this.el.style['transform'] = 'translate3d(' + this.__orgT.x + ', ' + this.__orgT.y + ', ' + this.__orgT.z + ') ' +
+      'translate3d(' + Other.fixed2(this.x) + 'px,' + Other.fixed2(this.y) + 'px,' + Other.fixed2(this.z) + 'px) ' +
+      'rotate' + _S0 + '(' + Other.fixed2(this['rotation' + _S0]) % 360 + 'deg) ' +
+      'rotate' + _S1 + '(' + Other.fixed2(this['rotation' + _S1]) % 360 + 'deg) ' +
+      'rotate' + _S2 + '(' + Other.fixed2(this['rotation' + _S2]) % 360 + 'deg) ' +
+      'scale3d(' + Other.fixed2(this.scaleX) + ', ' +
+      Other.fixed2(this.scaleY) + ', ' + Other.fixed2(this.scaleZ) + ') ';
 
     return this;
   }
