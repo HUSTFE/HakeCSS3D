@@ -17,7 +17,10 @@ export default class Stage extends Sprite {
     }
     this.el.style[this.prefix + 'Perspective'] = '800px';
     this.el.style[this.prefix + 'TransformStyle'] = 'flat';
-    this.el.style[this.prefix + 'Transform'] = '';
+    this.el.style['transform'] = '';
+    this.el.style['perspective'] = '800px';
+    this.el.style['transformStyle'] = 'flat';
+    this.el.style['transform'] = '';
     this.el.style.overflow = 'hidden';
 
     this.__rfix = new Sprite();
@@ -38,6 +41,7 @@ export default class Stage extends Sprite {
   updateT() {
     this.fov = Other.fixed0(0.5 / Math.tan((this.camera.fov * 0.5) / 180 * Math.PI) * this.height);
     this.el.style[this.prefix + 'Perspective'] = this.fov + 'px';
+    this.el.style['perspective'] = this.fov + 'px';
     this.__rfix.position(Other.fixed0(this.width / 2), Other.fixed0(this.height / 2), this.fov)
       .rotation(-this.camera.rotationX, -this.camera.rotationY, -this.camera.rotationZ).updateT();
     this.__pfix.position(-this.camera.x, -this.camera.y, -this.camera.z).updateT();

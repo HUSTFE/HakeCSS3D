@@ -38,6 +38,8 @@ export default class Sprite extends TObject {
     _dom.style.position = 'absolute';
     _dom.style[this.prefix + 'Transform'] = 'translateZ(0px)';
     _dom.style[this.prefix + 'TransformStyle'] = 'preserve-3d';
+    _dom.style['transform'] = 'translateZ(0px)';
+    _dom.style['transformStyle'] = 'preserve-3d';
     this.el = _dom;
     _dom.le = this;
   }
@@ -86,6 +88,7 @@ export default class Sprite extends TObject {
       switch (i) {
         case 'bothsides':
           this.el.style[this.prefix + 'BackfaceVisibility'] = this.__mat[i] ? 'visible' : 'hidden';
+          this.el.style['backfaceVisibility'] = this.__mat[i] ? 'visible' : 'hidden';
           break;
         case 'image':
           this.el.style['background' + Other.firstUpper(i)] = this.__mat[i] !== '' ?
@@ -135,6 +138,7 @@ export default class Sprite extends TObject {
     }
 
     this.el.style[this.prefix + 'TransformOrigin'] = this.__orgO.x + ' ' + this.__orgO.y + ' ' + this.__orgO.z;
+    this.el.style['transformOrigin'] = this.__orgO.x + ' ' + this.__orgO.y + ' ' + this.__orgO.z;
 
     return this;
   }
@@ -154,6 +158,7 @@ export default class Sprite extends TObject {
       'rotate' + _S2 + '(' + Other.fixed2(this['rotation' + _S2]) % 360 + 'deg) ' +
       'scale3d(' + Other.fixed2(this.scaleX) + ', ' +
       Other.fixed2(this.scaleY) + ', ' + Other.fixed2(this.scaleZ) + ') ';
+    this.el.style['transform'] = this.el.style[this.prefix + 'Transform'];
 
     return this;
   }

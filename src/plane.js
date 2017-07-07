@@ -30,7 +30,10 @@ export default class Plane extends Sprite {
       _flt += (this.__flt[i] !== '' ? (i + '(' + this.__flt[i].join(',') + ')') : '');
     }
 
-    if (_flt !== '') this.el.style[this.prefix + 'Filter'] = _flt;
+    if (_flt !== '') {
+      this.el.style[this.prefix + 'Filter'] = _flt;
+      this.el.style['filter'] = _flt;
+    }
 
     return this;
   }
