@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>test 3d</title>
     <script src="HakeCSS3D.min.js"></script>
-    <script src="https://rawgit.com/mxz96102/HakeConsole/master/lib/HakeConsole.min.js"></script>
+    <script src="https://rawgit.com/mxz96102/HakeConsole/master/lib/HakeConsole.min.jsf"></script>
     <style>
         #test{
             color: greenyellow;
@@ -92,7 +92,7 @@
     var o = new C3.Orienter();
 
     o.onOrient = function (e) {
-      console.log(330-e.lon)
+      //console.log(330-e.lon)
 
       if(!window.Ooffset)
         window.Ooffset = e.lon;
@@ -109,7 +109,7 @@
       if(b < -60)
         b = -60;
 
-      console.log(e.lat);
+      //console.log(e.lat);
       document.getElementById('test').innerText = a;
 
       sp.rotation(b, -a, 0).updateT()
