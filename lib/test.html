@@ -19,6 +19,32 @@
             border: dashed 1px white;
         }
     </style>
+    <script>
+      (function() {
+        var lastTime = 0;
+        var vendors = ['ms', 'moz', 'webkit', 'o'];
+        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+          window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+          window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+            || window[vendors[x]+'CancelRequestAnimationFrame'];
+        }
+
+        if (!window.requestAnimationFrame)
+          window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+          };
+
+        if (!window.cancelAnimationFrame)
+          window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+          };
+      }());
+    </script>
 </head>
 <body>
 <div id="test"></div>
@@ -26,68 +52,67 @@
 
 <script>
   window.onload = (function () {
-    try {
-      window.msg = '';
-      window.C3 = new HakeCSS3D();
-      window.s = new C3.Stage();
-      s.size(window.innerWidth, window.innerHeight).material({
-        color: "#cccccc"
-      }).update();
-      document.getElementById('main').appendChild(s.el);
-      window.sp = new C3.Sprite();
-      sp.position(0, 0, -500).update();
-      s.addChild(sp);
-      window.p = new C3.Triangle();
-      p.size(50, 70).position(0, 30, -s.fov).rotation(0, 0, 0).material({
-        color: C3.color.getRandomColor()
-      }).update();
-      //sp.addChild(p);
-      window.c = new C3.Box();
-      c.size(200).position(0, 0, -s.fov).rotation(0, 0, 0).material({
-        color: C3.color.getRandomColor()
-      }).visibility({alpha: 0.4}).update();
-      sp.addChild(c);
-      var c1 = (new C3.Box()).size(100).position(0, 0, -s.fov).rotation(0, 0, 0).material({
-        color: C3.color.getRandomColor()
-      }).visibility({alpha: 0.4}).update();
-      sp.addChild(c1);
-      setInterval(function () {
-        c.rotate(0.5, 0.5, 0);
-        c1.rotate(0.5, 0.5, 0);
-        c.update();
-        c1.update();
-      }, 10);
+    window.C3 = new HakeCSS3D();
+    window.s = new C3.Stage();
+    s.size(window.innerWidth, window.innerHeight).material({
+      color : "#cccccc"
+    }).update();
+    document.getElementById('main').appendChild(s.el);
+    window.sp = new C3.Sprite();
+    sp.position(0, 0, -500).update();
+    s.addChild(sp);
+    window.p = new C3.Triangle();
+    p.size(50,70).position(0, 30, -s.fov).rotation(0, 0, 0).material({
+      color : C3.color.getRandomColor()
+    }).update();
+    //sp.addChild(p);
+    window.c = new C3.Box();
+    c.size(200).position(0, 0, -s.fov).rotation(0, 0, 0).material({
+      color : C3.color.getRandomColor()
+    }).visibility({alpha : 0.4}).update();
+    sp.addChild(c);
+    var c1 = (new C3.Box()).size(100).position(0, 0, -s.fov).rotation(0, 0, 0).material({
+      color : C3.color.getRandomColor()
+    }).visibility({alpha : 0.4}).update();
+    sp.addChild(c1);
 
-      var o = new C3.Orienter();
-
-      o.onOrient = function (e) {
-        console.log(330 - e.lon)
-
-        if (!window.Ooffset)
-          window.Ooffset = e.lon;
-
-        var a = e.lon - window.Ooffset, b = e.lat;
-
-        if (a > 60)
-          a = 60;
-        if (a < -60)
-          a = -60;
-
-        if (b > 60)
-          b = 60;
-        if (b < -60)
-          b = -60;
-
-        console.log(e.lat);
-        document.getElementById('test').innerText = -a + '\n' + b + '\n' + window.s.prefix + '\n' + window.msg;
-
-        sp.rotation(b, -a, 0).updateT()
-      };
-
-      o.init();
-    } catch (e){
-      window.msg = e;
+    var event = function () {
+      c.rotate(0.5,0.5,0);
+      c1.rotate(0.5,0.5,0);
+      c.update();
+      c1.update();
+      requestAnimationFrame(event)
     }
+
+    requestAnimationFrame(event);
+
+    var o = new C3.Orienter();
+
+    o.onOrient = function (e) {
+      console.log(330-e.lon)
+
+      if(!window.Ooffset)
+        window.Ooffset = e.lon;
+
+      var a = e.lon - window.Ooffset,b = e.lat;
+
+      if(a>60)
+        a = 60;
+      if(a<-60)
+        a = -60;
+
+      if(b > 60)
+        b = 60;
+      if(b < -60)
+        b = -60;
+
+      console.log(e.lat);
+      document.getElementById('test').innerText = a;
+
+      sp.rotation(b, -a, 0).updateT()
+    };
+
+    o.init();
 
       /*document.onmousemove = function (e) {
        var rotate = e.screenX/window.innerWidth - 0.5 ;
@@ -108,7 +133,7 @@
        sp.rotation(0,a,0).updateT()
 
        }, false);*/
-  }).bind(window)
+  })
 </script>
 </body>
 </html>
