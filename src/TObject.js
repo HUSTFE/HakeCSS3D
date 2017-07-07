@@ -4,62 +4,62 @@
 import Other from 'other';
 
 export default class TObject {
-  constructor(params) {}
-
-  x = 0;
-  y = 0;
-  z = 0;
-  rotationX = 0;
-  rotationY = 0;
-  rotationZ = 0;
-  scaleX = 1;
-  scaleY = 1;
-  scaleZ = 1;
-  width = 0;
-  height = 0;
-  depth = 0;
-  __sort = ['X', 'Y', 'Z'];
-  originX = '50%';
-  originY = '50%';
-  originZ = '0px';
-  __orgO = {x: '50%', y: '50%', z: '0px'};
-  __orgT = {x: '-50%', y: '-50%', z: '0px'};
-  __orgF = {x: 0, y: 0, z: 0};
-  children = [];
-  prefix = Other.prefixCheck();
+  constructor(params) {
+    this.x = 0;
+    this.y = 0;
+    this.z = 0;
+    this.rotationX = 0;
+    this.rotationY = 0;
+    this.rotationZ = 0;
+    this.scaleX = 1;
+    this.scaleY = 1;
+    this.scaleZ = 1;
+    this.width = 0;
+    this.height = 0;
+    this.depth = 0;
+    this.__sort = ['X', 'Y', 'Z'];
+    this.originX = '50%';
+    this.originY = '50%';
+    this.originZ = '0px';
+    this.__orgO = {x: '50%', y: '50%', z: '0px'};
+    this.__orgT = {x: '-50%', y: '-50%', z: '0px'};
+    this.__orgF = {x: 0, y: 0, z: 0};
+    this.children = [];
+    this.prefix = Other.prefixCheck();
+  }
 
   position(x, y, z) {
-    this.x = x || this.x;
-    this.y = y || this.y;
-    this.z = z || this.z;
+    this.x = !x ? this.x : x;
+    this.y = !y ? this.y : y;
+    this.z = !z ? this.z : z;
     return this;
   }
 
   move(x, y, z) {
-    this.x += x || 0;
-    this.y += y || 0;
-    this.z += z || 0;
+    this.x += !x ? 0 : x;
+    this.y += !y ? 0 : y;
+    this.z += !z ? 0 : z;
     return this;
   }
 
   rotation(x, y, z) {
-    this.rotationX = x || this.rotationX;
-    this.rotationY = y || this.rotationY;
-    this.rotationZ = z || this.rotationZ;
+    this.rotationX = !x ? this.rotationX : x;
+    this.rotationY = !y ? this.rotationY : y;
+    this.rotationZ = !z ? this.rotationZ : z;
     return this;
   }
 
   rotate(x, y, z) {
-    this.rotationX += x || 0;
-    this.rotationY += y || 0;
-    this.rotationZ += z || 0;
+    this.rotationX += !x ? 0 : x;
+    this.rotationY += !y ? 0 : y;
+    this.rotationZ += !z ? 0 : z;
     return this;
   }
 
   scale(x, y, z) {
-    this.scaleX = x || this.scaleX;
-    this.scaleY = y || this.scaleY;
-    this.scaleZ = z || this.scaleZ;
+    this.scaleX = !x ? this.scaleX : x;
+    this.scaleY = !y ? this.scaleY : y;
+    this.scaleZ = !z ? this.scaleZ : z;
     return this;
   }
 
