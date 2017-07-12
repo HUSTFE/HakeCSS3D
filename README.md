@@ -1,5 +1,5 @@
 # Hake CSS3D Renderer
-[![](https://travis-ci.org/mxz96102/HakeCSS3D.svg?branch=master)](https://travis-ci.org/mxz96102/HakeCSS3D)
+[![](https://travis-ci.org/mxz96102/HakeCSS3D.svg?branch=master)](https://travis-ci.org/mxz96102/HakeCSS3D) [![npm version](https://img.shields.io/npm/v/hake-css3d.svg?style=flat)](https://www.npmjs.com/package/hake-css3d)
 > This project inspired by [Shrek.Wang](https://github.com/shrekshrek)'s css3d-engine
 
 ## What is this
