@@ -26,4 +26,8 @@ export default class other {
 
     console.error('Your browser might not support CSS3 properly.');
   }
+
+  static valid(l, back) {
+    return l.map((e,i) => !e ? back[i] : e)
+  }
 }

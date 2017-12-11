@@ -1,68 +1,121 @@
 /**
- * Created by Doming on 2017/6/9.
+ * @author Dominic Ming
+ * TObject is basic module of all 3d object
  */
+
 import Other from 'other';
 
+let v = Other.valid;
+
 export default class TObject {
+  // x,y,z is for position of object
+  x = 0;
+  y = 0;
+  z = 0;
+  // rotation of object
+  rotationX = 0;
+  rotationY = 0;
+  rotationZ = 0;
+  // scale of object
+  scaleX = 1;
+  scaleY = 1;
+  scaleZ = 1;
+  // basic 3d object property
+  width = 0;
+  height = 0;
+  depth = 0;
+  // sort is for the order of x, y, z.
+  __sort = ['X', 'Y', 'Z'];
+  // origin
+  originX = '50%';
+  originY = '50%';
+  originZ = '0px';
+  // __org is for transform
+  __orgO = {x: '50%', y: '50%', z: '0px'};
+  __orgT = {x: '-50%', y: '-50%', z: '0px'};
+  __orgF = {x: 0, y: 0, z: 0};
+  // basic children is a array
+  children = [];
+  // prefix for adopt browser
+  prefix = Other.prefixCheck();
+
   constructor(params) {
-    this.x = 0;
-    this.y = 0;
-    this.z = 0;
-    this.rotationX = 0;
-    this.rotationY = 0;
-    this.rotationZ = 0;
-    this.scaleX = 1;
-    this.scaleY = 1;
-    this.scaleZ = 1;
-    this.width = 0;
-    this.height = 0;
-    this.depth = 0;
-    this.__sort = ['X', 'Y', 'Z'];
-    this.originX = '50%';
-    this.originY = '50%';
-    this.originZ = '0px';
-    this.__orgO = {x: '50%', y: '50%', z: '0px'};
-    this.__orgT = {x: '-50%', y: '-50%', z: '0px'};
-    this.__orgF = {x: 0, y: 0, z: 0};
-    this.children = [];
-    this.prefix = Other.prefixCheck();
+    // this is leaf
   }
 
+  /**
+   * Set position for object
+   * @param {number} x
+   * @param {number} [y]
+   * @param {number} [z]
+   * @returns {TObject}
+   */
   position(x, y, z) {
-    this.x = !x ? this.x : x;
-    this.y = !y ? this.y : y;
-    this.z = !z ? this.z : z;
+    [this.x, this.y, this.z] = v([x,y,z],[this.x, this.y, this.z]);
     return this;
   }
 
-  move(x, y, z) {
-    this.x += !x ? 0 : x;
-    this.y += !y ? 0 : y;
-    this.z += !z ? 0 : z;
+  /**
+   * Move object
+   * @param {number} dx
+   * @param {number} [dy]
+   * @param {number} [dz]
+   * @returns {TObject}
+   */
+  move(dx, dy, dz) {
+    this.x += !dx ? 0 : dx;
+    this.y += !dy ? 0 : dy;
+    this.z += !dz ? 0 : dz;
     return this;
   }
 
+  /**
+   * rotation of object (deg)
+   * @param {number} x
+   * @param {number} [y]
+   * @param {number} [z]
+   * @returns {TObject}
+   */
   rotation(x, y, z) {
-    this.rotationX = !x ? this.rotationX : x;
-    this.rotationY = !y ? this.rotationY : y;
-    this.rotationZ = !z ? this.rotationZ : z;
+    [this.rotationX, this.rotationY, this.rotationZ] = v([x,y,z],
+      [this.rotationX, this.rotationY, this.rotationZ]);
     return this;
   }
 
-  rotate(x, y, z) {
-    this.rotationX += !x ? 0 : x;
-    this.rotationY += !y ? 0 : y;
-    this.rotationZ += !z ? 0 : z;
+  /**
+   * rotate object (deg)
+   * @param {number} dx
+   * @param {number} [dy]
+   * @param {number} [dz]
+   * @returns {TObject}
+   */
+  rotate(dx, dy, dz) {
+    this.rotationX += !dx ? 0 : dx;
+    this.rotationY += !dy ? 0 : dy;
+    this.rotationZ += !dz ? 0 : dz;
     return this;
   }
 
+  /**
+   * set scale
+   * @param {number} x
+   * @param {number} [y]
+   * @param {number} [z]
+   * @returns {TObject}
+   */
   scale(x, y, z) {
-    this.scaleX = !x ? this.scaleX : x;
-    this.scaleY = !y ? this.scaleY : y;
-    this.scaleZ = !z ? this.scaleZ : z;
+    [this.scaleX, this.scaleY, this.scaleZ] = v([x,y,z],
+      [this.scaleX, this.scaleY, this.scaleZ]);
     return this;
   }
 
+  /**
+   * set size
+   * @param {number} width
+   * @param {number} [height]
+   * @param {number} [depth]
+   * @returns {TObject}
+   */
   size(width, height, depth) {
     switch (arguments.length) {
       case 1 :
@@ -83,6 +136,13 @@ export default class TObject {
     return this;
   }
 
+  /**
+   * set origin
+   * @param {number} x
+   * @param {number} y
+   * @param {number} z
+   * @returns {TObject}
+   */
   origin(x, y, z) {
     switch (arguments.length) {
       case 1 :

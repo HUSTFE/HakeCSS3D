@@ -9,7 +9,7 @@
     "testit": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
     "test": "webpack --mode=build"
   },
-  "devDependencies": {
+  "dependencies": {
     "babel": "6.3.13",
     "babel-core": "6.1.18",
     "babel-eslint": "5.0.0",

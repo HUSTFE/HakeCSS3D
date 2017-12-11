@@ -1,6 +1,7 @@
 # Hake CSS3D Renderer
 [![](https://travis-ci.org/mxz96102/HakeCSS3D.svg?branch=master)](https://travis-ci.org/mxz96102/HakeCSS3D) [![npm version](https://img.shields.io/npm/v/hake-css3d.svg?style=flat)](https://www.npmjs.com/package/hake-css3d)
 > This project inspired by [Shrek.Wang](https://github.com/shrekshrek)'s css3d-engine
+> I start to rewrite and fix the problem that it can't using through npm
 
 ## What is this
 This is a 3d renderer using css3 to make web page view, it's based on [Shrek.Wang](https://github.com/shrekshrek)'s css3d-engine. Using ES6 to write make it can import using ES6;

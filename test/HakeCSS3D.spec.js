@@ -1,5 +1,5 @@
 import chai from 'chai';
-import Library from '../lib/HakeCSS3D.min.js';
+import HakeCSS3D from '../lib/HakeCSS3D.min.js';
 
 chai.expect();
 
@@ -9,7 +9,7 @@ var lib;
 
 describe('Given an instance of my library', function () {
   before(function () {
-    lib = new Library();
+    lib = new HakeCSS3D();
   });
   describe('when I need the version', function () {
     it('should return the version', () => {
