@@ -7,15 +7,11 @@ var libraryName = 'HakeCSS3D';
 
 var plugins = [], outputFile;
 
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.min.js';
-} else {
-  outputFile = libraryName + '.js';
-}
+plugins.push(new UglifyJsPlugin({ minimize: true }));
+outputFile = libraryName + '.min.js';
 
 var config = {
-  entry: __dirname + '/src/index.js',
+  entry: './src/index',
   devtool: 'source-map',
   output: {
     path: __dirname + '/lib',
@@ -28,19 +24,20 @@ var config = {
     loaders: [
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/
       },
       {
         test: /(\.jsx|\.js)$/,
-        loader: "eslint-loader",
+        loader: 'eslint-loader',
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
+    extensions: ['.js'],
+    aliasFields: ['browser'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules']
   },
   plugins: plugins
 };
