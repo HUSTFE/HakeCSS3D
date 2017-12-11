@@ -23,11 +23,28 @@ export default class other {
         return _prefix[i];
       }
     }
-
     console.error('Your browser might not support CSS3 properly.');
+    return '';
   }
 
   static valid(l, back) {
-    return l.map((e,i) => !e ? back[i] : e)
+    return l.map((e, i) => !e ? back[i] : e);
+  }
+
+  static validPlus(l, back) {
+    return l.map((e, i) => !e ? back[i] : e + back[i]);
+  }
+
+  static validMatch(l, back) {
+    let [x, y, z] = l;
+
+    if (z) {
+      return [x, y, z];
+    } else if (y) {
+      return [x, y, back[2]];
+    } else if (x) {
+      return [x, x, x];
+    }
+    return back;
   }
 }

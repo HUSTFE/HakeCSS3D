@@ -10,40 +10,38 @@ const vp = Other.validPlus;
 const vm = Other.validMatch;
 
 export default class TObject {
-  // x,y,z is for position of object
-  x = 0;
-  y = 0;
-  z = 0;
-  // rotation of object
-  rotationX = 0;
-  rotationY = 0;
-  rotationZ = 0;
-  // scale of object
-  scaleX = 1;
-  scaleY = 1;
-  scaleZ = 1;
-  // basic 3d object property
-  width = 0;
-  height = 0;
-  depth = 0;
-  // sort is for the order of x, y, z.
-  __sort = ['X', 'Y', 'Z'];
-  // origin
-  originX = '50%';
-  originY = '50%';
-  originZ = '0px';
-  // __org is for transform
-  __orgO = {x: '50%', y: '50%', z: '0px'};
-  __orgT = {x: '-50%', y: '-50%', z: '0px'};
-  __orgF = {x: 0, y: 0, z: 0};
-  // basic children is a array
-  parent = null;
-  children = [];
-  // prefix for adopt browser
-  prefix = Other.prefixCheck();
-
   constructor(params) {
-    // this is leave for more function
+    // x,y,z is for position of object
+    this.x = 0;
+    this.y = 0;
+    this.z = 0;
+    // rotation of object
+    this.rotationX = 0;
+    this.rotationY = 0;
+    this.rotationZ = 0;
+    // scale of object
+    this.scaleX = 1;
+    this.scaleY = 1;
+    this.scaleZ = 1;
+    // basic 3d object property
+    this.width = 0;
+    this.height = 0;
+    this.depth = 0;
+    // sort is for the order of x, y, z.
+    this.__sort = ['X', 'Y', 'Z'];
+    // origin
+    this.originX = '50%';
+    this.originY = '50%';
+    this.originZ = '0px';
+    // __org is for transform
+    this.__orgO = {x: '50%', y: '50%', z: '0px'};
+    this.__orgT = {x: '-50%', y: '-50%', z: '0px'};
+    this.__orgF = {x: 0, y: 0, z: 0};
+    // basic children is a array
+    this.parent = null;
+    this.children = [];
+    // prefix for adopt browser
+    this.prefix = Other.prefixCheck();
   }
 
   /**
@@ -54,7 +52,7 @@ export default class TObject {
    * @returns {TObject}
    */
   position(x, y, z) {
-    [this.x, this.y, this.z] = v([x,y,z],[this.x, this.y, this.z]);
+    [this.x, this.y, this.z] = v([x, y, z], [this.x, this.y, this.z]);
     return this;
   }
 
@@ -66,7 +64,7 @@ export default class TObject {
    * @returns {TObject}
    */
   move(dx, dy, dz) {
-    [this.x,this.y,this.z] = vp([dx, dy, dz], [this.x, this.y, this.z])
+    [this.x, this.y, this.z] = vp([dx, dy, dz], [this.x, this.y, this.z]);
     return this;
   }
 
@@ -78,7 +76,7 @@ export default class TObject {
    * @returns {TObject}
    */
   rotation(x, y, z) {
-    [this.rotationX, this.rotationY, this.rotationZ] = v([x,y,z],
+    [this.rotationX, this.rotationY, this.rotationZ] = v([x, y, z],
       [this.rotationX, this.rotationY, this.rotationZ]);
     return this;
   }
