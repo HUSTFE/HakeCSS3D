@@ -5,7 +5,9 @@
 
 import Other from 'other';
 
-let v = Other.valid;
+const v = Other.valid;
+const vp = Other.validPlus;
+const vm = Other.validMatch;
 
 export default class TObject {
   // x,y,z is for position of object
@@ -35,12 +37,13 @@ export default class TObject {
   __orgT = {x: '-50%', y: '-50%', z: '0px'};
   __orgF = {x: 0, y: 0, z: 0};
   // basic children is a array
+  parent = null;
   children = [];
   // prefix for adopt browser
   prefix = Other.prefixCheck();
 
   constructor(params) {
-    // this is leaf
+    // this is leave for more function
   }
 
   /**
@@ -63,14 +66,12 @@ export default class TObject {
    * @returns {TObject}
    */
   move(dx, dy, dz) {
-    this.x += !dx ? 0 : dx;
-    this.y += !dy ? 0 : dy;
-    this.z += !dz ? 0 : dz;
+    [this.x,this.y,this.z] = vp([dx, dy, dz], [this.x, this.y, this.z])
     return this;
   }
 
   /**
-   * rotation of object (deg)
+   * Rotation of object (deg)
    * @param {number} x
    * @param {number} [y]
    * @param {number} [z]
@@ -83,92 +84,75 @@ export default class TObject {
   }
 
   /**
-   * rotate object (deg)
+   * Rotate object (deg)
    * @param {number} dx
    * @param {number} [dy]
    * @param {number} [dz]
    * @returns {TObject}
    */
   rotate(dx, dy, dz) {
-    this.rotationX += !dx ? 0 : dx;
-    this.rotationY += !dy ? 0 : dy;
-    this.rotationZ += !dz ? 0 : dz;
+    [this.rotationX, this.rotationY, this.rotationZ] = vp([dx, dy, dz],
+      [this.rotationX, this.rotationY, this.rotationZ]);
     return this;
   }
 
   /**
-   * set scale
+   * Set scale
    * @param {number} x
    * @param {number} [y]
    * @param {number} [z]
    * @returns {TObject}
    */
   scale(x, y, z) {
-    [this.scaleX, this.scaleY, this.scaleZ] = v([x,y,z],
+    [this.scaleX, this.scaleY, this.scaleZ] = v([x, y, z],
       [this.scaleX, this.scaleY, this.scaleZ]);
     return this;
   }
 
   /**
-   * set size
+   * Set size
    * @param {number} width
    * @param {number} [height]
    * @param {number} [depth]
    * @returns {TObject}
    */
   size(width, height, depth) {
-    switch (arguments.length) {
-      case 1 :
-        this.width = width;
-        this.height = width;
-        this.depth = width;
-        break;
-      case 2 :
-        this.width = width;
-        this.height = height;
-        break;
-      case 3 :
-        this.width = width;
-        this.height = height;
-        this.depth = depth;
-        break;
-    }
+    [this.width, this.height, this.depth] = vm([width, height, depth],
+      [this.width, this.height, this.depth]);
     return this;
   }
 
   /**
-   * set origin
+   * Set origin
    * @param {number} x
-   * @param {number} y
-   * @param {number} z
+   * @param {number} [y]
+   * @param {number} [z]
    * @returns {TObject}
    */
   origin(x, y, z) {
-    switch (arguments.length) {
-      case 1 :
-        this.originX = x;
-        this.originY = x;
-        this.originZ = x;
-        break;
-      case 2 :
-        this.originX = x;
-        this.originY = y;
-        break;
-      case 3 :
-        this.originX = x;
-        this.originY = y;
-        this.originZ = z;
-        break;
-    }
+    [this.originX, this.originY, this.originZ] = vm([x, y, z],
+      [this.originX, this.originY, this.originZ]);
     return this;
   }
 
+  /**
+   * Set sort of x, y, z
+   * @param {"X","Y","Z"} s0
+   * @param {"X","Y","Z"} s1
+   * @param {"X","Y","Z"} s2
+   * @returns {TObject}
+   */
   sort(s0, s1, s2) {
     if (arguments.length > 3) console.error('sort arguments is wrong!');
     this.__sort = [s0, s1, s2];
     return this;
   }
 
+  /**
+   * Add child to TObject
+   * @param {Sprite} view
+   * @returns {TObject}
+   */
   addChild(view) {
     if (view.parent) view.parent.removeChild(view);
     if (view.__name !== '') {
@@ -180,6 +164,11 @@ export default class TObject {
     return this;
   }
 
+  /**
+   * remove child from TObject
+   * @param {Sprite} view
+   * @returns {TObject}
+   */
   removeChild(view) {
     for (let i = this.children.length - 1; i >= 0; i--) {
       if (this.children[i] === view) {
@@ -192,6 +181,10 @@ export default class TObject {
     return this;
   }
 
+  /**
+   * remove all child form TObject
+   * @returns {TObject}
+   */
   removeAllChild() {
     for (let i = this.children.length - 1; i >= 0; i--) {
       let view = this.children[i];
@@ -203,6 +196,10 @@ export default class TObject {
     return this;
   }
 
+  /**
+   * remove now object form its parent
+   * @returns {TObject}
+   */
   remove() {
     if (this.parent !== null) {
       this.parent.removeChild(this);
